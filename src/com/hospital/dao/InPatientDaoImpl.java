@@ -24,12 +24,13 @@ public class InPatientDaoImpl  implements InPatientDao{
 	public boolean addInPatient(InPatient inpatient) {
 
 		con=Utility.establishConnection();
-		query="insert into inpatient(date-adm,date-dis,room_no,lan_no) values(?,?,?,?) ";
+		query="insert into inpatient(date_adm,date_dis,room_no,lab_no) values(?,?,?,?) ";
 		try {
 			ps=con.prepareStatement(query);
 			ps.setString(1, inpatient.getDate_adm());
 			ps.setString(2,inpatient.getDate_dis());
 			ps.setInt(3, inpatient.getRoom_no());
+			
 			ps.setInt(4, inpatient.getLab_no());
 			
 			ans=ps.executeUpdate();
@@ -64,11 +65,11 @@ public class InPatientDaoImpl  implements InPatientDao{
 			{
 				
 				in=new InPatient();
-				
-				in.setDate_adm(rs.getString(1));
-				in.setDate_dis(rs.getString(2));
-				in.setRoom_no(rs.getInt(3));
-				in.setLab_no(rs.getInt(4));
+				in.setpId(rs.getInt(1));
+				in.setDate_adm(rs.getString(2));
+				in.setDate_dis(rs.getString(3));
+				in.setRoom_no(rs.getInt(4));
+				in.setLab_no(rs.getInt(5));
 				
 				l.add(in);
 			}
